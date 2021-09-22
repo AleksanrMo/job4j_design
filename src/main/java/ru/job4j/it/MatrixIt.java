@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class MatrixIt implements Iterator<Integer> {
 
-    private int point = 0;
+
     private final int[][] data;
     private int row = 0;
     private int column = 0;
@@ -17,13 +17,12 @@ public class MatrixIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-    while (point < data.length) {
+    while (row < data.length) {
         if (data[row].length != 0 && column < data[row].length) {
             return true;
         }
         column = 0;
         row++;
-        point++;
     }
         return false;
     }
