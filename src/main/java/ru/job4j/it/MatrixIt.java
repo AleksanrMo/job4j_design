@@ -17,17 +17,14 @@ public class MatrixIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-if (point < data.length) {
-    while (row < data.length) {
+    while (point < data.length) {
         if (data[row].length != 0 && column < data[row].length) {
-                return true;
+            return true;
         }
         column = 0;
         row++;
         point++;
     }
-
-}
         return false;
     }
 
@@ -41,7 +38,7 @@ if (point < data.length) {
 
     public static void main(String[] args) {
         int[][] in = {
-                {1}, {2, 3}
+                {}, {}
         };
         MatrixIt test = new MatrixIt(in);
         test.next();
