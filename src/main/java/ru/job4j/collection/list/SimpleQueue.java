@@ -12,6 +12,5 @@ public class SimpleQueue<T> {
 
     public void push(T value) {
         in.pushLast(value);
-
     }
 }
