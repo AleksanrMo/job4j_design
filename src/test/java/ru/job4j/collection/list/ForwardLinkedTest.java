@@ -11,6 +11,7 @@ import static org.junit.Assert.assertThat;
 
 public class ForwardLinkedTest {
 
+
     @Test(expected = NoSuchElementException.class)
     public void whenDeleteFirst() {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
@@ -34,4 +35,15 @@ public class ForwardLinkedTest {
         Iterator<Integer> it = linked.iterator();
         assertThat(it.next(), is(2));
     }
+
+    @Test
+    public void whenAddThenIter() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(1));
+        assertThat(it.next(), is(2));
+    }
+
 }
