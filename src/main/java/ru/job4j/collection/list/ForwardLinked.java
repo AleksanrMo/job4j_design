@@ -70,6 +70,5 @@ public class ForwardLinked<T> implements Iterable<T> {
             this.value = value;
             this.next = next;
         }
-
     }
 }
