@@ -46,4 +46,17 @@ public class ForwardLinkedTest {
         assertThat(it.next(), is(2));
     }
 
+    @Test
+    public void whenRevert() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        linked.add(3);
+        linked.revert();
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(1));
+    }
+
 }
