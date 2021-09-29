@@ -10,6 +10,10 @@ public class SimpleArrayList<T> implements Iterable<T>, List<T> {
 
     private int modCount = 0;
 
+    public  SimpleArrayList() {
+        this.container = (T[]) new Object[16];
+    }
+
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
     }
