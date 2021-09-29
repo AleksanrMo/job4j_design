@@ -9,15 +9,13 @@ public class SimpleQueue<T> {
 
 
     public T poll() {
-        int temp = inSize;
         if (outSize == 0) {
-            for (int i = 0; i < inSize; i++) {
+            while (inSize > 0) {
                 out.push(in.pop());
-                temp--;
+                inSize--;
                 outSize++;
             }
         }
-        inSize = temp;
         outSize--;
         return out.pop();
 
@@ -27,14 +25,5 @@ public class SimpleQueue<T> {
         in.push(value);
         inSize++;
 
-    }
-
-    public static void main(String[] args) {
-        SimpleQueue<Integer> i = new SimpleQueue<>();
-        SimpleQueue<Integer> j =  new SimpleQueue<>();
-        i.push(1);
-        i.push(2);
-        i.push(3);
-        System.out.println(i);
     }
 }
