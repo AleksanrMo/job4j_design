@@ -7,16 +7,12 @@ public class ListUtils {
 
     public static <T> void addBefore(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> i = list.listIterator(index);
-            i.add(value);
-            i.next();
+        list.add(index, value);
     }
 
     public static <T> void addAfter(List<T> list, int index, T value) {
         Objects.checkIndex(index, list.size());
-        ListIterator<T> i = list.listIterator(index);
-                i.next();
-                i.add(value);
+        list.add(index + 1, value);
     }
 
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
@@ -47,5 +43,15 @@ public class ListUtils {
                i.remove();
            }
        }
+    }
+
+    public static void main(String[] args) {
+        Set<String> strings = Set.of("one", "two", "three");
+        Iterator<String> str = strings.iterator();
+        Map<String, Integer> in = new HashMap<>();
+        in.put("s", 1);
+        while (str.hasNext()) {
+            System.out.println(str.next());
+        }
     }
 }
