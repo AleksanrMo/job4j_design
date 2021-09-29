@@ -52,4 +52,13 @@ public class SimpleQueueTest {
         assertThat(queue.poll(), is(2));
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void whenPollMoreThenPush() {
+        SimpleQueue<Integer> queue = new SimpleQueue<>();
+        queue.push(1);
+        queue.push(2);
+        queue.poll();
+        queue.poll();
+        queue.poll();
+    }
 }
