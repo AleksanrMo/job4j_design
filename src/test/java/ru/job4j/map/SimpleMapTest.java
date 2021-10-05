@@ -92,4 +92,24 @@ public class SimpleMapTest {
         assertNull(iter.next());
 
     }
+
+    @Test
+    public void whenTableExpend() {
+        SimpleMap<Integer, String> map = new SimpleMap<>();
+        map.put(0, "Good morning");
+        map.put(2, "Good night");
+        map.put(3, "Hello");
+        map.put(4, "Good morning");
+        map.put(5, "Good night");
+        map.put(7, "Hello");
+        map.put(8, "Good morning");
+        map.put(9, "Good night");
+        map.put(10, "Hello");
+        map.put(11, "Good morning");
+        map.put(12, "Good night");
+        map.put(17, "error");
+
+        assertThat(map.get(12), is("Good night"));
+
+    }
 }
