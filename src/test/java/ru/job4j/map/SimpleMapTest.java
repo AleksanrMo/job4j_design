@@ -108,7 +108,6 @@ public class SimpleMapTest {
         map.put(11, "Good morning");
         map.put(12, "Good night");
         map.put(17, "error");
-
         assertThat(map.get(12), is("Good night"));
 
     }

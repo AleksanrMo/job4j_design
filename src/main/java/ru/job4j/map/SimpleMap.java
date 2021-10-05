@@ -26,10 +26,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        int index = getIndex(hash(key));
         if (count >= LOAD_FACTOR * capacity) {
             resize();
         }
+        int index = getIndex(hash(key));
         if (table[index] == null) {
             table[index] = new MapEntry<>(key, value);
             modCount++;
@@ -44,7 +44,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public V get(K key) {
         int index = getIndex(hash(key));
         if (table[index] != null && table[index].getKey().equals(key)) {
-            return table[getIndex(hash(key))].getValue();
+            return table[index].getValue();
         }
         return null;
     }
