@@ -22,7 +22,6 @@ public class SimpleTree<E> implements Tree<E> {
             return false;
         }
         return getParent.get().children.add(new Node<>(child));
-
     }
 
     @Override
