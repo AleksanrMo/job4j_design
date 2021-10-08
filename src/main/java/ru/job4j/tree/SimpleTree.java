@@ -66,9 +66,5 @@ public class SimpleTree<E> implements Tree<E> {
     public int hashCode() {
         return Objects.hash(root);
     }
-
-    public static void main(String[] args) {
-
-    }
 }
 
