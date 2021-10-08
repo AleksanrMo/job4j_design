@@ -73,5 +73,4 @@ public class AnalyzeTest {
                 is(new Info(1, 1, 1))
         );
     }
-
 }

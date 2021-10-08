@@ -33,5 +33,4 @@ public class Analyze {
         }
        return rsl;
     }
-
 }
