@@ -17,9 +17,9 @@ public class Analyze {
             mapPrevious.put(user.getId(), user.getName());
         }
        for (User user: current) {
-            if (!mapPrevious.containsKey(user.getId()) && !mapPrevious.containsValue(user.getName())) {
+            if (!mapPrevious.containsKey(user.getId())) {
                 rsl.setAdded(1);
-            } else if (mapPrevious.containsKey(user.getId()) && !mapPrevious.containsValue(user.getName())) {
+            } else if (!mapPrevious.containsValue(user.getName())) {
                 rsl.setChanged(1);
             }
             if (mapPrevious.containsKey(user.getId())) {
