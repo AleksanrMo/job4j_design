@@ -12,12 +12,10 @@ public class LogFilter {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             reader.lines().forEach(el -> {
                 String[] strArray = el.split(" ");
-                for (String str: strArray) {
-                    if (str.equals("404")) {
-                        list.add(el);
-                    }
-                } });
-
+                if (strArray[strArray.length - 2].equals("404")) {
+                       list.add("\n" + el);
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -26,6 +24,5 @@ public class LogFilter {
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
         System.out.println(log);
-
     }
 }
