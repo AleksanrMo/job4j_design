@@ -18,10 +18,9 @@ public class Analyze {
                 } else if (!mapPrevious.get(user.getId()).equals(user.getName())) {
                     rsl.setChanged(rsl.getChanged() + 1);
                     }
-                if (mapPrevious.containsKey(user.getId())) {
-               rsl.setDeleted(rsl.getAdded() + previous.size() - current.size());
             }
-        }
+            rsl.setDeleted(rsl.getAdded() + previous.size() - current.size());
+
        return rsl;
     }
 }
