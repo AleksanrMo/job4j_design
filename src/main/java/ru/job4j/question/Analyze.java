@@ -20,6 +20,7 @@ public class Analyze {
                     }
             }
             rsl.setDeleted(rsl.getAdded() + previous.size() - current.size());
+
             return rsl;
     }
 }
