@@ -18,18 +18,19 @@ public class Config {
 
         try (BufferedReader read =  new BufferedReader(new FileReader(this.path))) {
              read.lines().forEach(e -> {
-                 String[] str2 = e.split("=");
-               String[] str = str2[0].split("");
-
-                 if (!str[0].equals("#") && !e.isEmpty()) {
-                     values.put(str2[0], str2[1]);
+                 if (!e.startsWith("#")) {
+                     String[] str2 = e.split("=");
+                     if (str2.length == 2 && !e.startsWith(" ") && !str2[0].equals("")) {
+                         values.put(str2[0], str2[1]);
+                     } else {
+                         throw new IllegalArgumentException();
+                     }
                  }
              });
         } catch (Exception e) {
             e.printStackTrace();
+            throw new IllegalArgumentException();
         }
-
-
     }
 
     public String value(String key) {
@@ -46,28 +47,6 @@ public class Config {
             e.printStackTrace();
         }
         return out.toString();
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Config config = (Config) o;
-        return Objects.equals(path, config.path);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(path);
-    }
-
-    public Map<String, String> getValues() {
-        return values;
     }
 
     public static void main(String[] args) {
