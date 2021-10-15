@@ -3,10 +3,7 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class Config {
 
@@ -21,8 +18,8 @@ public class Config {
 
         try (BufferedReader read =  new BufferedReader(new FileReader(this.path))) {
              read.lines().forEach(e -> {
-                 String[] str = e.split(" ");
                  String[] str2 = e.split("=");
+               String[] str = str2[0].split("");
 
                  if (!str[0].equals("#") && !e.isEmpty()) {
                      values.put(str2[0], str2[1]);
@@ -67,6 +64,10 @@ public class Config {
     @Override
     public int hashCode() {
         return Objects.hash(path);
+    }
+
+    public Map<String, String> getValues() {
+        return values;
     }
 
     public static void main(String[] args) {

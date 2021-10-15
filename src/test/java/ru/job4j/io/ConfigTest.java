@@ -18,14 +18,6 @@ public class ConfigTest {
         assertThat(config.value("surname"), is(Matchers.nullValue()));
     }
 
-//    @Test(expected = IllegalArgumentException.class)
-//    public void when() {
-//        String path = "./data/pair_without_key.properties";
-//        Config config = new Config(path);
-//        config.load();
-//        assertThat(config.value(null), is(Matchers.nullValue()));
-//
-//    }
     @Test
     public void whenPairContainsCommentsAndEmptyLines() {
         String path = "./data/pair_with_comments_and_empty_lines.properties";
