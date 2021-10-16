@@ -23,14 +23,15 @@ public class Config {
                      if (str2.length == 2 && !e.startsWith(" ") && !str2[0].equals("")) {
                          values.put(str2[0], str2[1]);
                      } else {
-                         throw new IllegalArgumentException();
+                          throw new IllegalArgumentException();
                      }
                  }
              });
         } catch (Exception e) {
             e.printStackTrace();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("!!!!");
         }
+
     }
 
     public String value(String key) {
@@ -50,7 +51,9 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Config("app.properties"));
+        System.out.println(new Config("./data/pair_without_key.properties"));
+Config con = new Config("./data/pair_without_key.properties");
+
     }
 
 }
