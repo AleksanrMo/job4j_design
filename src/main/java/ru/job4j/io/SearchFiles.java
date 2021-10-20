@@ -29,8 +29,10 @@ public class SearchFiles implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        System.out.println(file.toAbsolutePath());
-        return CONTINUE;
+        if (predicate.test(file)) {
+           list.add(file);
+        }
+      return FileVisitResult.CONTINUE;
     }
 
     @Override
@@ -42,7 +44,4 @@ public class SearchFiles implements FileVisitor<Path> {
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
         return CONTINUE;
     }
-
-
-
 }
