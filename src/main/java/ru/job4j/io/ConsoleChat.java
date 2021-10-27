@@ -50,7 +50,6 @@ public class ConsoleChat {
                 list.add(rsl);
                 System.out.println(rsl);
             }
-
         }
     }
 
@@ -67,7 +66,7 @@ public class ConsoleChat {
     private void saveLog(List<String> log) {
         StringBuilder builder = new StringBuilder();
         log.forEach(e -> builder.append(e).append(System.lineSeparator()));
-        try (PrintWriter pw = new PrintWriter(new FileWriter(botAnswers, Charset.forName("WINDOWS-1251"), true))) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(botAnswers, true))) {
           pw.println(builder);
         } catch (Exception e) {
             e.printStackTrace();
