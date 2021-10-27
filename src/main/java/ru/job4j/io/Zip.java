@@ -8,10 +8,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
     public class Zip {
-
         public static void packFiles(List<Path> sources, Path target) {
-
-               try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target.toFile())))) {
+            try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target.toFile())))) {
                    for (Path file: sources) {
                        zip.putNextEntry(new ZipEntry(file.toFile().getPath()));
                        try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(file.toFile().getPath()))) {
@@ -23,8 +21,7 @@ import java.util.zip.ZipOutputStream;
                }
             }
 
-
-        public static void packSingleFile(File source, File target) {
+            public static void packSingleFile(File source, File target) {
             try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
                 zip.putNextEntry(new ZipEntry(source.getPath()));
                 try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
@@ -42,8 +39,8 @@ import java.util.zip.ZipOutputStream;
             String exclude = arguments.get("e");
                 if (args.length != 3 || directory == null || output == null || exclude == null) {
                     throw new IllegalArgumentException();
-}
-            return arguments;
+                    }
+                return arguments;
         }
 
         public static  List<Path> search(Path root, Predicate<Path> condition) throws IOException {
@@ -67,6 +64,5 @@ import java.util.zip.ZipOutputStream;
                 e.printStackTrace();
             }
         }
-
     }
 
