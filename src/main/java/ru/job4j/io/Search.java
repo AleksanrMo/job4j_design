@@ -31,7 +31,5 @@ public class Search {
         if (!Files.exists(Paths.get(args[0]))) {
             throw new IllegalArgumentException(Paths.get(args[0]) + " - this directory isn't exist.");
         }
-
-
     }
 }
