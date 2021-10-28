@@ -1,9 +1,6 @@
 package ru.job4j.io;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -74,8 +71,8 @@ public class ConsoleChat {
     }
 
     public static void main(String[] args) {
-        ConsoleChat cc = new ConsoleChat("C:\\projects\\job4j_design\\data\\oracle.txt",
-                "C:\\projects\\job4j_design\\data\\saveLog.txt");
+        ConsoleChat cc = new ConsoleChat("./data/oracle.txt",
+                "./data/saveLog.txt");
         cc.run();
     }
 }
