@@ -13,10 +13,22 @@ public class ConsoleChat {
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
+    private final List<String> phrases;
 
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
         this.botAnswers = botAnswers;
+        phrases = readPhrases();
+    }
+
+    public List<String> readPhrases() {
+      List<String> list = new ArrayList<>();
+        try (BufferedReader read = new BufferedReader(new FileReader(path))) {
+            read.lines().forEach(list::add);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     public void run() {
@@ -41,23 +53,12 @@ public class ConsoleChat {
                 continue;
             }
             if (temp.equals(CONTINUE)) {
-                List<String> str = readPhrases();
                 Random r = new Random();
-                String rsl = str.get(r.nextInt(str.size()));
+                String rsl = phrases.get(r.nextInt(phrases.size()));
                 list.add(rsl);
                 System.out.println(rsl);
             }
         }
-    }
-
-    private List<String> readPhrases() {
-      List<String> list =  new ArrayList<>();
-        try (BufferedReader read = new BufferedReader(new FileReader(path))) {
-             read.lines().forEach(list::add);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-            return list;
     }
 
     private void saveLog(List<String> log) {
@@ -69,7 +70,6 @@ public class ConsoleChat {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
         ConsoleChat cc = new ConsoleChat("./data/oracle.txt",
                 "./data/saveLog.txt");
