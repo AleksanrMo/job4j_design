@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<school eSchooll = "false" studentsNumber = "2560" name = "Good School">
+    <disciplines>
+        <discipline>math</discipline>
+        <discipline>geometry</discipline>
+        <discipline>computer since</discipline>
+    </disciplines>
+</school>
