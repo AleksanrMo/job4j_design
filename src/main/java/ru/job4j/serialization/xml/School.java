@@ -1,14 +1,25 @@
 package ru.job4j.serialization.xml;
 
 import java.util.Arrays;
+import javax.xml.bind.annotation.*;
 
+
+@XmlRootElement(name = "school")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class School {
 
-    private final boolean eSchool;
-    private final int studentsNumber;
-    private final String nameOfSchool;
-    private final String[] discipline;
-    private final Student student;
+    @XmlAttribute
+    private  boolean eSchool;
+    private  int studentsNumber;
+    private  String nameOfSchool;
+    @XmlElementWrapper(name = "disciplines")
+    @XmlElement(name = "discipline")
+    private  String[] discipline;
+    private  Student student;
+
+    public School() {
+
+    }
 
     public School(boolean eSchool, int studentsNumber, String nameOfSchool, Student student,
                   String... discipline) {
@@ -30,6 +41,8 @@ public class School {
                 ", nameOfSchool='" + nameOfSchool + '\''
                 +
                 ", discipline=" + Arrays.toString(discipline)
+                +
+                ", student=" + student
                 +
                 '}';
     }
