@@ -10,7 +10,6 @@ public class Test {
 
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(house));
-
         final String houseJson =
                 "{"
                         + "\"age\":10,"

@@ -9,7 +9,6 @@ public class Address {
         this.street = street;
         this.number = number;
     }
-
     @Override
     public String toString() {
         return "Address{"
