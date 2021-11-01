@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <school eSchooll = "false" studentsNumber = "2560" name = "Good School">
+    <student name = "Anton" lastName = "Antonov" age = "15"/>
     <disciplines>
         <discipline>math</discipline>
         <discipline>geometry</discipline>
