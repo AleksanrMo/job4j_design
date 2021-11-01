@@ -46,7 +46,6 @@ public class School {
                 +
                 '}';
     }
-
     public static void main(String[] args) {
         School school = new School(false, 2560, "Good School",
                 new Student("Anton", "Antonov", 15), "geometry", "computer since");

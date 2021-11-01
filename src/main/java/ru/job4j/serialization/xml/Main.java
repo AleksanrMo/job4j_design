@@ -10,7 +10,6 @@ import java.io.StringWriter;
 
 
 public class Main {
-
     public static void main(String[] args) throws JAXBException, IOException {
         School school = new School(false, 2560, "Good School",
                 new Student("Anton", "Antonov", 15), "geometry", "computer since");
