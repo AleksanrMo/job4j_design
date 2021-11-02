@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -23,27 +24,12 @@ import java.util.zip.ZipOutputStream;
                }
             }
 
-            public static void packSingleFile(File source, File target) {
-            try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-                zip.putNextEntry(new ZipEntry(source.getPath()));
-                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                    zip.write(out.readAllBytes());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         public static ArgsName validation(String[] args) {
-            StringBuilder builder = new StringBuilder();
-            for (String arg: args) {
-                builder.append(arg);
-            }
-            if (!builder.toString().contains("-d=") || !builder.toString().contains("-e=")
-                    || !builder.toString().contains("-o=")) {
+            ArgsName arguments = ArgsName.of(args);
+            if (!arguments.getValues().containsKey("d") || !arguments.getValues().containsKey("o")
+                    || !arguments.getValues().containsKey("e")) {
                 throw new IllegalArgumentException();
             }
-            ArgsName arguments = ArgsName.of(args);
             Path directory = Path.of(arguments.get("d"));
             Path output = Path.of(arguments.get("o"));
             String exclude = arguments.get("e");
@@ -68,7 +54,6 @@ import java.util.zip.ZipOutputStream;
             ArgsName arguments = validation(args);
             Path output = Path.of(arguments.get("o"));
             packFiles(search(args), output);
-
         }
     }
 

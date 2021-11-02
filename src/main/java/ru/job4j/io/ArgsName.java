@@ -33,11 +33,21 @@ public class ArgsName {
         return names;
     }
 
+    public Map<String, String> getValues() {
+        return values;
+    }
+
     public static void main(String[] args) {
         ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
         System.out.println(jvm.get("Xmx"));
 
         ArgsName zip = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
+
+        Map<String, String> st = new HashMap<>();
+        String s = "-out=project.zip";
+        String[] str = s.split("=");
+        st.put(str[0].substring(1), str[1]);
+        System.out.println(st);
     }
 }
