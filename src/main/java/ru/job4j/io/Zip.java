@@ -1,8 +1,12 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -33,7 +37,15 @@ import java.util.zip.ZipOutputStream;
             }
         }
 
-        public static ArgsName find(String[] args) {
+        public static ArgsName validation(String[] args) {
+            StringBuilder builder = new StringBuilder();
+            for (String arg: args) {
+                builder.append(arg);
+            }
+            if (!builder.toString().contains("-d=") || !builder.toString().contains("-e=")
+                    || !builder.toString().contains("-o=")) {
+                throw new IllegalArgumentException();
+            }
             ArgsName arguments = ArgsName.of(args);
             Path directory = Path.of(arguments.get("d"));
             Path output = Path.of(arguments.get("o"));
@@ -41,29 +53,25 @@ import java.util.zip.ZipOutputStream;
                 if (args.length != 3 || directory == null || output == null || exclude == null) {
                     throw new IllegalArgumentException();
                     }
+            if (!Files.exists(Paths.get(arguments.get("d")))) {
+                throw new IllegalArgumentException("The directory does not exist!");
+            }
+
                 return arguments;
         }
 
-        public static  List<Path> search(Path root, Predicate<Path> condition) throws IOException {
-            return Search.search(root, condition);
+        public static List<Path> search(String[] args) throws IOException {
+            ArgsName arguments = validation(args);
+            Path directory = Path.of(arguments.get("d"));
+            String exclude = arguments.get("e");
+            return Search.search(directory, s -> !s.toFile().getName().endsWith(exclude));
         }
 
-        public static void main(String[] args) {
-        char a = 'a';
-            System.out.println(a);
-            packSingleFile(new File("./pom.xml"),
-                    new File("./pom.zip")
-            );
-            ArgsName arguments = find(args);
-            Path directory = Path.of(arguments.get("d"));
+        public static void main(String[] args) throws IOException {
+            ArgsName arguments = validation(args);
             Path output = Path.of(arguments.get("o"));
-            String exclude = arguments.get("e");
-            try {
-                List<Path> search = Search.search(directory, s -> !s.toFile().getName().endsWith(exclude));
-                packFiles(search, output);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            packFiles(search(args), output);
+
         }
     }
 
