@@ -40,6 +40,5 @@ public class House {
                 + ", habitable=" + habitable
                 + ", address=" + address
                 + '}';
-
     }
 }

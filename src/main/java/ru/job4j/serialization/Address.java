@@ -24,5 +24,6 @@ public class Address {
                 + "street='" + street + '\''
                 + ", number=" + number
                 + '}';
+
     }
 }

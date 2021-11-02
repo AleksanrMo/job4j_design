@@ -25,6 +25,5 @@ public class TestJSON {
 
         JSONObject jsonHouse = new JSONObject(house);
         System.out.println(jsonHouse);
-
     }
 }

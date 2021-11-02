@@ -16,5 +16,4 @@ public class A {
     public String getHello() {
         return "Hello";
     }
-
 }
