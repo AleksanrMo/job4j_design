@@ -20,7 +20,9 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
        FileProperty property = new FileProperty(size, name);
         if (map.containsKey(property)) {
             map.get(property).add(file);
-       }
+       } else {
+            map.put(property, new ArrayList<>());
+        }
         return super.visitFile(file, attrs);
     }
 }
