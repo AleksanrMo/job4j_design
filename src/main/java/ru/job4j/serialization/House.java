@@ -16,6 +16,22 @@ public class House {
         this.rooms = rooms;
     }
 
+    public String[] getRooms() {
+        return rooms;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isHabitable() {
+        return habitable;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
     @Override
     public String toString() {
         return "House{"

@@ -9,6 +9,15 @@ public class Address {
         this.street = street;
         this.number = number;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public String toString() {
         return "Address{"
