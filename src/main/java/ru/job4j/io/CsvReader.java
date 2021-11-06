@@ -9,33 +9,31 @@ import java.util.Scanner;
 
 public class CsvReader {
 
-    private static final String PATH = "path";
-    private static final String DELIMITER = "delimiter";
-    private static final String OUT = "out";
-    private static final String FILTER = "filter";
-    private static final String STDOUT = "stdout";
+    private  final String path = "path";
+    private  final String delimiter = "delimiter";
+    private  final String out = "out";
+    private  final String filter = "filter";
+    private StringBuilder builder2 = new StringBuilder();
 
-    private static String[] firstLine(ArgsName args) {
-        File file = new File(args.get(PATH));
-        String delimiter = args.get(DELIMITER);
+    private  String[] firstLine(ArgsName args) {
+        File file = new File(args.get(path));
+        String delimiterTemp = args.get(delimiter);
         String[] string = {};
         try (BufferedReader read = new BufferedReader(new FileReader(file))) {
-            string = read.readLine().split(delimiter);
+            string = read.readLine().split(delimiterTemp);
         } catch (IOException e) {
             e.printStackTrace();
         }
             return string;
     }
 
-    public static void handle(ArgsName args) throws Exception {
+    public  void handle(ArgsName args) {
         validation(args);
         String[] strings = firstLine(args);
-        File path = new File(args.get(PATH));
-        String delimiter = args.get(DELIMITER);
-        String out = args.get(OUT);
-        String filter = args.get(FILTER);
-        String[] filterArray = filter.split(",");
-        Scanner scanner = new Scanner(path);
+        File pathTemp = new File(args.get(path));
+        String delimiterTemp = args.get(delimiter);
+        String filterTemp = args.get(filter);
+        String[] filterArray = filterTemp.split(",");
         List<Integer> listInt = new ArrayList<>();
         for (int i = 0; i < strings.length; i++) {
             for (String s : filterArray) {
@@ -44,31 +42,45 @@ public class CsvReader {
                 }
             }
         }
-        StringBuilder builder2 = new StringBuilder();
-        while (scanner.hasNextLine()) {
-            String[] textFromFile = scanner.nextLine().split(delimiter);
-            for (int i = 0; i < listInt.size(); i++) {
-                if (i == (listInt.size() - 1)) {
-                    builder2.append(textFromFile[listInt.get(i)]);
-                } else {
-                    builder2.append(textFromFile[listInt.get(i)]).append(delimiter);
+        try (Scanner scanner = new Scanner(pathTemp)) {
+            while (scanner.hasNextLine()) {
+                String[] textFromFile = scanner.nextLine().split(delimiterTemp);
+                for (int i = 0; i < listInt.size(); i++) {
+                    if (i == (listInt.size() - 1)) {
+                        builder2.append(textFromFile[listInt.get(i)]);
+                    } else {
+                        builder2.append(textFromFile[listInt.get(i)]).append(delimiterTemp);
+                    }
                 }
+                builder2.append(System.lineSeparator());
             }
-            builder2.append(System.lineSeparator());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        if (out.equals(STDOUT)) {
+     writeToFile(args);
+
+    }
+
+    private void writeToFile(ArgsName args) {
+        String outTemp = args.get(out);
+        String stdout = "stdout";
+        if (outTemp.equals(stdout)) {
             System.out.println(builder2);
         } else {
-            try (PrintWriter outFile = new PrintWriter(new FileOutputStream(out))) {
+            try (PrintWriter outFile = new PrintWriter(new FileOutputStream(outTemp))) {
                 outFile.write(builder2.toString());
             } catch (IOException e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
 
-    private static void validation(ArgsName args) {
-        String[] parameters = {PATH, DELIMITER, OUT, FILTER};
+    private  void validation(ArgsName args) {
+        if (!args.getValues().containsKey(path) || !args.getValues().containsKey(delimiter)
+                || !args.getValues().containsKey(out) || !args.getValues().containsKey(filter)) {
+            throw new IllegalArgumentException();
+        }
+        String[] parameters = {path, delimiter, out, filter};
         for (String str : parameters) {
             if (args.get(str) == null) {
                 throw new IllegalArgumentException(String.format("%s value is null", str));
@@ -77,14 +89,15 @@ public class CsvReader {
                 throw new IllegalArgumentException(String.format("%s parameter not found ", str));
             }
 
-            if (!Files.exists(Paths.get(args.get(PATH)))) {
+            if (!Files.exists(Paths.get(args.get(path)))) {
                 throw new IllegalArgumentException("The directory does not exist!");
             }
         }
     }
 
     public static void main(String[] args) throws Exception {
-        handle(ArgsName.of(args));
+        CsvReader reader = new CsvReader();
+        reader.handle(ArgsName.of(args));
     }
 }
 

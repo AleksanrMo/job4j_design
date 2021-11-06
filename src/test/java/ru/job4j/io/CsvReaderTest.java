@@ -35,7 +35,8 @@ public class CsvReaderTest {
                 "Jack;25",
                 "William;30"
         ).concat(System.lineSeparator());
-        CsvReader.handle(argsName);
+        CsvReader reader = new CsvReader();
+       reader.handle(argsName);
         Assert.assertEquals(expected, Files.readString(target.toPath()));
     }
 
