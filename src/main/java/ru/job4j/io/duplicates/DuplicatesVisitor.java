@@ -1,5 +1,7 @@
 package ru.job4j.io.duplicates;
 
+import ru.job4j.serialization.json.A;
+
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -10,7 +12,7 @@ import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    private static Map<FileProperty, List<Path>> map = new HashMap<>();
+    Map<FileProperty, List<Path>> map = new HashMap<>();
 
 
     @Override
@@ -28,27 +30,13 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         return super.visitFile(file, attrs);
     }
 
-    public void print() {
+    public List<List<Path>> getDuplicates() {
+        List<List<Path>> list = new ArrayList<>();
         for (Map.Entry<FileProperty, List<Path>> entry : map.entrySet()) {
             if (entry.getValue().size() > 1) {
-                System.out.println(entry.getKey().getName() + " имеет дубикаты и содержится директориях :");
-                System.out.println(entry.getValue());
-                System.out.println("-------------------------------");
+                list.add(entry.getValue());
             }
         }
-    }
-    public  void duplicatesFinder(Path path, DuplicatesVisitor visit) throws IOException {
-        Files.walkFileTree(path, visit);
-        visit.print();
-    }
-
-    @Override
-    public String toString() {
-        return "DuplicatesVisitor{"
-                +
-                "map="
-                + map
-                +
-                '}';
+        return list;
     }
 }
