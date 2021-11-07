@@ -30,11 +30,11 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         return super.visitFile(file, attrs);
     }
 
-    public List<List<Path>> getDuplicates() {
-        List<List<Path>> list = new ArrayList<>();
+    public List<Path> getDuplicates() {
+        List<Path> list = new ArrayList<>();
         for (Map.Entry<FileProperty, List<Path>> entry : map.entrySet()) {
             if (entry.getValue().size() > 1) {
-                list.add(entry.getValue());
+                list.addAll(entry.getValue());
             }
         }
         return list;
