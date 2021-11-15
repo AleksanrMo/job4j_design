@@ -49,12 +49,14 @@ on d.id = e.departments_id
 where e.name is null;
 
 
-select * from departments d
-right join employees e 
-on d.id = e.departments_id; 
-select * from employees e
-left join departments d 
-on e.departments_id = d.id
+select d.name  department, e.name employee  from departments d
+right join employees e
+on d.id = e.departments_id;
+
+select d.name department , e.name employee  from employees e
+left join departments d
+on d.id= e.departments_id;
+
 
 create table teens(
 	id serial primary key,
