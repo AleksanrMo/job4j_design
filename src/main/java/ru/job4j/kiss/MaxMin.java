@@ -6,18 +6,20 @@ import java.util.*;
 public class MaxMin {
 
     public <T> T max(List<T> value, Comparator<T> comparator) {
-       return valid(value, comparator.reversed());
+       return validAndCalc(value, comparator.reversed());
     }
 
     public <T> T min(List<T> value, Comparator<T> comparator) {
-       return valid(value, comparator);
+       return validAndCalc(value, comparator);
     }
 
-    public <T> T valid(List<T> value, Comparator<T> comparator) {
+    public <T> T validAndCalc(List<T> value, Comparator<T> comparator) {
         T rst = null;
         if (!value.isEmpty()) {
-            value.sort(comparator);
             rst = value.get(0);
+            for (T t: value) {
+                rst = comparator.compare(rst, t) < 0 ? rst : t;
+            }
         }
         return rst;
     }
