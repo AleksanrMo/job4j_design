@@ -8,9 +8,9 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Ignore
 public class GenerateTest {
 
-    @Ignore
     @Test
     public void whenOneKeyAndOneValueMatch() {
         Generator one = new Generate();
@@ -20,7 +20,6 @@ public class GenerateTest {
         assertThat(rst, is(one.produce(str, map)));
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenExtraKeyAndValue() {
         Generator one = new Generate();
@@ -30,7 +29,6 @@ public class GenerateTest {
         one.produce(str, map);
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenSomeKeysNotMatch() {
         Generator one = new Generate();
