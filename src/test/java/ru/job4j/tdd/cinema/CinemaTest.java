@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+@Ignore
 public class CinemaTest {
 
-    @Ignore
     @Test
     public void buy() {
         Account account = new AccountCinema();
@@ -28,7 +28,6 @@ public class CinemaTest {
         assertThat(ticket, is(new Ticket3D()));
     }
 
-    @Ignore
     @Test
     public void find() {
         Cinema cinema = new Cinema3D();
@@ -37,7 +36,6 @@ public class CinemaTest {
         assertThat(sessions, is(Arrays.asList(new Session3D())));
     }
 
-    @Ignore
     @Test
     public void whenNoSuchSessions() {
         Cinema cinema = new Cinema3D();
@@ -47,7 +45,6 @@ public class CinemaTest {
     }
 
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenDateNotValid() {
         Cinema cinema = new Cinema3D();
@@ -59,7 +56,6 @@ public class CinemaTest {
 
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenPlaceIsBusy() {
         Cinema cinema = new Cinema3D();
@@ -71,7 +67,6 @@ public class CinemaTest {
 
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void whenPlaceNotValid() {
         Cinema cinema = new Cinema3D();
