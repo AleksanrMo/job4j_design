@@ -50,5 +50,4 @@ public class CinemaTest {
         Ticket ticket = cinema.buy(account, 1, 1, date);
         assertNull(ticket);
     }
-
 }
