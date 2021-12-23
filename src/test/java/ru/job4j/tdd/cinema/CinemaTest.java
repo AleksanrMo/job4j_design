@@ -64,6 +64,7 @@ public class CinemaTest {
         Calendar date = Calendar.getInstance();
         date.set(2020, 11, 10, 20, 00);
         Ticket ticket = cinema.buy(account, 1, 1, date);
+        Ticket ticket2 = cinema.buy(account, 1, 1, date);
 
     }
 
