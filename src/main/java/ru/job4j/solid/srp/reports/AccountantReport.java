@@ -3,6 +3,7 @@ package ru.job4j.solid.srp.reports;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 public class AccountantReport implements Report, ChangeList {
@@ -30,12 +31,9 @@ public class AccountantReport implements Report, ChangeList {
 
     @Override
     public List<Employee> changeList(List<Employee> list) {
-        List<Employee> listTemp = new ArrayList<>();
-        for (Employee employee: list) {
-           listTemp.add(new Employee(employee.getName(), employee.getHired(),
-                    employee.getFired(), employee.getSalary() / 75));
-        }
-        return listTemp;
-
+        return list.stream()
+                .map(e -> new Employee(e.getName(), e.getHired(),
+                        e.getFired(), e.getSalary() / 75))
+                .collect(Collectors.toList());
     }
 }
