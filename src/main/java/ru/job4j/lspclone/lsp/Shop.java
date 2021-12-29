@@ -18,7 +18,7 @@ public class Shop implements Storage {
         double rst =  percent.percentageOfExpiration(food);
         if (accept(food)) {
             if (rst > 75) {
-                food.setDiscount(40);
+                food.setPrice(food.getPrice() - ((food.getDiscount() / 100.0) * food.getPrice()));
             }
             list.add(food);
         }
