@@ -2,12 +2,17 @@ package ru.job4j.solid.lsp.parking;
 
 public class Parking implements ParkingLot {
 
-    private Cars[] passengerCarPlaces;
-    private Cars[] truckPlaces;
+    private final Cars[] trackPlaces;
+    private final Cars[] carPlaces;
+    private int passenger;
+    private int track;
 
-    public Parking(Cars[] passengerCarPlaces, Cars[] truckPlaces) {
-        this.passengerCarPlaces = passengerCarPlaces;
-        this.truckPlaces = truckPlaces;
+
+    public Parking(int passenger, int track) {
+        this.passenger = passenger;
+        this.track = track;
+        carPlaces = new Cars[passenger];
+        trackPlaces = new Truck[track];
     }
 
     @Override
@@ -15,19 +20,13 @@ public class Parking implements ParkingLot {
         return false;
     }
 
-    public Cars[] getPassengerCarPlaces() {
-        return passengerCarPlaces;
-    }
-
-    public void setPassengerCarPlaces(Cars[] passengerCarPlaces) {
-        this.passengerCarPlaces = passengerCarPlaces;
-    }
-
     public Cars[] getTruckPlaces() {
-        return truckPlaces;
+        return trackPlaces.clone();
+
     }
 
-    public void setTruckPlaces(Cars[] truckPlaces) {
-        this.truckPlaces = truckPlaces;
+    public Cars[] getCarPlaces() {
+        return carPlaces.clone();
     }
+
 }

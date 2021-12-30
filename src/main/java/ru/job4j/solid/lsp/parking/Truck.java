@@ -9,7 +9,7 @@ public class Truck implements Cars {
     }
 
     @Override
-    public int sizeOfCar() {
+    public int size() {
         return 0;
     }
 }

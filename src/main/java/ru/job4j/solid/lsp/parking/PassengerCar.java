@@ -8,7 +8,7 @@ public class PassengerCar implements Cars {
         size = 1;
     }
     @Override
-    public int sizeOfCar() {
+    public int size() {
         return 0;
     }
 }
