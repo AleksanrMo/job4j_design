@@ -1,5 +1,9 @@
 package ru.job4j.solid.lsp.parking;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Parking implements ParkingLot {
 
     private final Cars[] trackPlaces;
@@ -21,12 +25,13 @@ public class Parking implements ParkingLot {
     }
 
     public Cars[] getTruckPlaces() {
-        return trackPlaces.clone();
+        return Arrays.copyOf(trackPlaces, trackPlaces.length);
 
     }
 
     public Cars[] getCarPlaces() {
-        return carPlaces.clone();
+        return Arrays.copyOf(carPlaces, trackPlaces.length);
     }
+
 
 }
