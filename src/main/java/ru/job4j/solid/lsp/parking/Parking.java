@@ -1,37 +1,56 @@
 package ru.job4j.solid.lsp.parking;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Parking implements ParkingLot {
 
-    private final Cars[] trackPlaces;
+    private final Cars[] truckPlaces;
     private final Cars[] carPlaces;
     private int passenger;
-    private int track;
+    private int truck;
 
 
-    public Parking(int passenger, int track) {
+    public Parking(int passenger, int truck) {
         this.passenger = passenger;
-        this.track = track;
+        this.truck = truck;
         carPlaces = new Cars[passenger];
-        trackPlaces = new Truck[track];
+        truckPlaces = new Truck[truck];
     }
 
     @Override
     public boolean acceptCar(Cars car) {
-        return false;
+        boolean rst = false;
+        if (car.size() == 1 && passenger > 0) {
+            carPlaces[carPlaces.length  - passenger] = car;
+            passenger--;
+            rst = true;
+        } else if (car.size() > 1 && truck > 0) {
+            truckPlaces[truckPlaces.length - truck] = car;
+            truck--;
+            rst = true;
+        } else if (car.size() > 1 && truck == 0 && passenger >= car.size()) {
+            for (int i = 0; i < car.size(); i++) {
+                carPlaces[carPlaces.length - passenger] = car;
+                passenger--;
+            }
+            rst = true;
+        }
+        return rst;
     }
 
     public Cars[] getTruckPlaces() {
-        return Arrays.copyOf(trackPlaces, trackPlaces.length);
+        return Arrays.copyOf(truckPlaces, truckPlaces.length);
 
     }
 
     public Cars[] getCarPlaces() {
-        return Arrays.copyOf(carPlaces, trackPlaces.length);
+        return Arrays.copyOf(carPlaces, carPlaces.length);
     }
 
-
+    public static void main(String[] args) {
+        Cars car = new Truck(2);
+        Parking parking = new Parking(2, 0);
+        parking.acceptCar(car);
+        System.out.println(Arrays.toString(parking.getCarPlaces()));
+    }
 }

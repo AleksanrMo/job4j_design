@@ -9,6 +9,6 @@ public class PassengerCar implements Cars {
     }
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 }

@@ -2,7 +2,8 @@ package ru.job4j.solid.lsp.parking;
 
 import org.junit.Ignore;
 import org.junit.Test;
-
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Ignore
@@ -15,7 +16,7 @@ public class ParkingTest {
         Cars passengerCar = new PassengerCar();
         Parking parking = new Parking(10, 10);
         parking.acceptCar(passengerCar);
-        assertEquals(parking.getCarPlaces()[0], passengerCar);
+        assertThat(parking.getCarPlaces()[0], is(passengerCar));
     }
 
     @Test
@@ -50,19 +51,18 @@ public class ParkingTest {
         assertEquals(parking.getCarPlaces()[1], truck);
     }
 
-    @Test(expected = Exception.class)
+    @Test()
     public void whenAddParkingHaveNoPlaceForPassengerCar()  {
         Cars passengerCar = new PassengerCar();
         Parking parking = new Parking(0, 10);
-        parking.acceptCar(passengerCar);
+        assertFalse(parking.acceptCar(passengerCar));
 
     }
 
-    @Test(expected = Exception.class)
+    @Test()
     public void whenAddParkingHaveNoPlaceForTrack()  {
-        Cars passengerCar = new PassengerCar();
         Cars truck = new Truck(2);
         Parking parking = new Parking(1, 0);
-        parking.acceptCar(truck);
+        assertFalse(parking.acceptCar(truck));
     }
 }
