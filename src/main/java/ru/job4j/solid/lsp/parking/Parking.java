@@ -46,11 +46,4 @@ public class Parking implements ParkingLot {
     public Cars[] getCarPlaces() {
         return Arrays.copyOf(carPlaces, carPlaces.length);
     }
-
-    public static void main(String[] args) {
-        Cars car = new Truck(2);
-        Parking parking = new Parking(2, 0);
-        parking.acceptCar(car);
-        System.out.println(Arrays.toString(parking.getCarPlaces()));
-    }
 }

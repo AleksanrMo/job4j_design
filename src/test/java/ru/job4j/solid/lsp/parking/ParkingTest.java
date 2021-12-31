@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Ignore
+
 public class ParkingTest {
 
     @Test
