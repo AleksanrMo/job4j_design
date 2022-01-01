@@ -18,10 +18,10 @@ public class Task implements Show {
         task.add(taski);
     }
 
-    public void show() {
+    public void show(Output output) {
         output.println(name);
         for (Show t: task) {
-             t.show();
+             t.show(output);
             }
         }
 

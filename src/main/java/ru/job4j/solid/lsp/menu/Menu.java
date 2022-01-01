@@ -1,6 +1,8 @@
 package ru.job4j.solid.lsp.menu;
 
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,9 +21,9 @@ public class Menu implements Show {
    public void add(Show task) {
        list.add(task);
    }
-    public void show() {
+    public void show(Output output) {
         for (Show t: list) {
-            t.show();
+            t.show(output);
         }
         Scanner scanner = new Scanner(System.in);
         String str = scanner.nextLine();
@@ -42,7 +44,7 @@ public class Menu implements Show {
         menu.add(task1);
         menu.add(task2);
 
-       menu.show();
+       menu.show(new ConsoleOutput());
 
 
     }
