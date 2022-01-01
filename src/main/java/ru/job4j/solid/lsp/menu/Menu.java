@@ -1,20 +1,17 @@
 package ru.job4j.solid.lsp.menu;
 
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu implements Show {
 
-    Output output;
+
    private List<Show> list;
 
    public Menu() {
        list = new ArrayList<>();
-       output = new ConsoleOutput();
    }
 
 
