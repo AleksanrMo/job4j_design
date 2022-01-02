@@ -1,6 +1,5 @@
 package ru.job4j.solid.lsp.parking;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -16,7 +15,7 @@ public class ParkingTest {
         Cars passengerCar = new PassengerCar();
         Parking parking = new Parking(10, 10);
         parking.acceptCar(passengerCar);
-        assertThat(parking.getCarPlaces()[0], is(passengerCar));
+        assertThat(parking.getPassenger(), is(9));
     }
 
     @Test
@@ -25,7 +24,7 @@ public class ParkingTest {
         Cars truck = new Truck(2);
         Parking parking = new Parking(10, 10);
         parking.acceptCar(truck);
-        assertEquals(parking.getTruckPlaces()[0], truck);
+        assertEquals(parking.getTruck(), 9);
 
     }
 
@@ -37,18 +36,17 @@ public class ParkingTest {
         Parking parking = new Parking(10, 10);
         parking.acceptCar(truck);
         parking.acceptCar(passengerCar);
-        assertEquals(parking.getTruckPlaces()[0], truck);
-        assertEquals(parking.getCarPlaces()[0], passengerCar);
+        assertEquals(parking.getTruck(), 9);
+        assertEquals(parking.getPassenger(), 9);
     }
 
     @Test()
-    public void whenAddTruckButOnlyOnePlaceOrZeroInTruckPlaces()  {
+    public void whenAddTruckButZeroInTruckPlaces()  {
 
         Cars truck = new Truck(2);
         Parking parking = new Parking(10, 0);
         parking.acceptCar(truck);
-        assertEquals(parking.getCarPlaces()[0], truck);
-        assertEquals(parking.getCarPlaces()[1], truck);
+        assertEquals(parking.getPassenger(), 8);
     }
 
     @Test()

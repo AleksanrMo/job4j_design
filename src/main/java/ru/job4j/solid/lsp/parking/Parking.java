@@ -1,7 +1,5 @@
 package ru.job4j.solid.lsp.parking;
 
-import java.util.Arrays;
-
 public class Parking implements ParkingLot {
 
     private final Cars[] truckPlaces;
@@ -14,7 +12,7 @@ public class Parking implements ParkingLot {
         this.passenger = passenger;
         this.truck = truck;
         carPlaces = new Cars[passenger];
-        truckPlaces = new Truck[truck];
+        truckPlaces = new Cars[truck];
     }
 
     @Override
@@ -38,12 +36,11 @@ public class Parking implements ParkingLot {
         return rst;
     }
 
-    public Cars[] getTruckPlaces() {
-        return Arrays.copyOf(truckPlaces, truckPlaces.length);
-
+    public int getPassenger() {
+        return passenger;
     }
 
-    public Cars[] getCarPlaces() {
-        return Arrays.copyOf(carPlaces, carPlaces.length);
+    public int getTruck() {
+        return truck;
     }
 }
