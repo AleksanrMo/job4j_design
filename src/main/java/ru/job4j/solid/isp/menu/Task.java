@@ -1,4 +1,4 @@
-package ru.job4j.solid.dip.menu;
+package ru.job4j.solid.isp.menu;
 
 import java.util.ArrayList;
 import java.util.List;

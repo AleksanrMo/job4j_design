@@ -1,5 +1,4 @@
-package ru.job4j.solid.dip.menu;
-
+package ru.job4j.solid.isp.menu;
 
 public interface Show {
 
