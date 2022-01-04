@@ -1,4 +1,4 @@
-package ru.job4j.lspclone.lsp;
+package ru.job4j.solid.lsp.store;
 
 
 import java.util.ArrayList;

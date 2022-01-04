@@ -1,28 +1,28 @@
-package ru.job4j.lspclone.lsp;
+package ru.job4j.solid.lsp.store;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WareHouse implements Storage {
+public class Trash implements Storage {
 
-    private List<Food> list;
+   private List<Food> list;
 
-    public WareHouse() {
-        list = new ArrayList<>();
+    public Trash() {
+       list = new ArrayList<>();
     }
 
     @Override
     public void addFood(Food food) {
-       if (accept(food)) {
-           list.add(food);
-       }
+        if (accept(food)) {
+            list.add(food);
+        }
     }
 
     @Override
     public boolean accept(Food food) {
         CalculatePercentage percent = new CalculatePercentage();
         double rst =  percent.percentageOfExpiration(food);
-        return rst >= 0 && rst < 25;
+        return rst >= 100;
     }
 
     @Override
