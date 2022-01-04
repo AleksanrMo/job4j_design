@@ -1,11 +1,7 @@
-package ru.job4j.lspclone.lsp;
+package ru.job4j.solid.lsp.store;
 
-
-
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,4 +78,3 @@ public class ControlQualityTest {
         assertThat(list.get(2).getList().size(), is(3));
     }
 }
-
