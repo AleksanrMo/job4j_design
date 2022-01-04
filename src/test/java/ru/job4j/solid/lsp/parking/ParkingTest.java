@@ -62,5 +62,6 @@ public class ParkingTest {
         Cars truck = new Truck(2);
         Parking parking = new Parking(1, 0);
         assertFalse(parking.acceptCar(truck));
+
     }
 }

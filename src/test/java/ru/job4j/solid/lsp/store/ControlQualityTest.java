@@ -76,5 +76,6 @@ public class ControlQualityTest {
         assertTrue(list.get(0).getList().isEmpty());
         assertTrue(list.get(1).getList().isEmpty());
         assertThat(list.get(2).getList().size(), is(3));
+
     }
 }
